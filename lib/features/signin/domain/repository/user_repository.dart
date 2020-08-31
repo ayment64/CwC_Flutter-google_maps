@@ -5,4 +5,5 @@ import 'package:dartz/dartz.dart';
 
 abstract class UserRepository {
   Future<Either<Failure, User>> create_user(Params params);
+  Future<Either<Failure, User>> login(Params params);
 }

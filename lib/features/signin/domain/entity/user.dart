@@ -25,22 +25,29 @@ class User {
       this.iV});
 
   User.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
-    email = json['email'];
-    username = json['username'];
-    password = json['password'];
-    firstname = json['firstname'];
-    lastname = json['lastname'];
-    cin = json['cin'];
-    imageurl = json['imageurl'];
-    lastLogin = json['lastLogin'];
-    dateOfCreation = json['dateOfCreation'];
-    iV = json['__v'];
+    sId = json['newUser']['_id'];
+    email = json['newUser']['email'];
+    username = json['newUser']['username'];
+    password = json['newUser']['password'];
+    firstname = json['newUser']['firstname'];
+    lastname = json['newUser']['lastname'];
+    cin = json['newUser']['cin'];
+    imageurl = json['newUser']['imageurl'];
+    iV = json['newUser']['__v'];
   }
-
+  User.fromJsonLogin(Map<String, dynamic> json) {
+    sId = json['user']['_id'];
+    email = json['user']['email'];
+    username = json['user']['username'];
+    password = json['user']['password'];
+    firstname = json['user']['firstname'];
+    lastname = json['user']['lastname'];
+    cin = json['user']['cin'];
+    imageurl = json['user']['imageurl'];
+    iV = json['user']['__v'];
+  }
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
     data['email'] = this.email;
     data['username'] = this.username;
     data['password'] = this.password;
@@ -48,9 +55,8 @@ class User {
     data['lastname'] = this.lastname;
     data['cin'] = this.cin;
     data['imageurl'] = this.imageurl;
-    data['lastLogin'] = this.lastLogin;
-    data['dateOfCreation'] = this.dateOfCreation;
-    data['__v'] = this.iV;
+    data['lastLogin'] = this.lastLogin.toString();
+    data['dateOfCreation'] = this.dateOfCreation.toString();
     return data;
   }
 }

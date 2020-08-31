@@ -1,13 +1,16 @@
 import 'dart:collection';
 import 'dart:math';
-
+import 'package:meta/meta.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:search_map_place/search_map_place.dart';
 
+import 'features/signin/domain/entity/user.dart';
+
 class GMap extends StatefulWidget {
-  GMap({Key key}) : super(key: key);
+  final User user;
+  GMap({Key key, @required this.user}) : super(key: key);
 
   @override
   _GMapState createState() => _GMapState();
@@ -49,7 +52,7 @@ class _GMapState extends State<GMap> {
             print("poly tap");
             setState(() {
               selectedPolygon = PolygonId("$randomNumber");
-              
+
               isSelected = !isSelected;
             });
           },
@@ -68,7 +71,13 @@ class _GMapState extends State<GMap> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Map')),
+      appBar: AppBar(
+          title: Text(
+        'Map',
+        style: TextStyle(
+          color: Colors.white,
+        ),
+      )),
       body: Stack(
         children: <Widget>[
           GoogleMap(
@@ -130,7 +139,10 @@ class _GMapState extends State<GMap> {
                             isSelected = !isSelected;
                           });
                         },
-                        child: Icon(Icons.delete),
+                        child: Icon(
+                          Icons.delete,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                     visible: isSelected,
@@ -155,7 +167,10 @@ class _GMapState extends State<GMap> {
                           _polylines = HashSet<Polyline>();
                         });
                       },
-                      child: Icon(Icons.delete),
+                      child: Icon(
+                        Icons.delete,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   visible: points.length > 0,
@@ -168,7 +183,10 @@ class _GMapState extends State<GMap> {
                       onPressed: () {
                         _setPolygons();
                       },
-                      child: Icon(Icons.save),
+                      child: Icon(
+                        Icons.save,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   visible: points.length > 2,
@@ -182,7 +200,10 @@ class _GMapState extends State<GMap> {
                         deleteMode = !deleteMode;
                       });
                     },
-                    child: Icon(Icons.delete_outline),
+                    child: Icon(
+                      Icons.delete_outline,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
                 Padding(
@@ -212,7 +233,10 @@ class _GMapState extends State<GMap> {
                         },
                       );
                     },
-                    child: Icon(Icons.color_lens),
+                    child: Icon(
+                      Icons.color_lens,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ],
