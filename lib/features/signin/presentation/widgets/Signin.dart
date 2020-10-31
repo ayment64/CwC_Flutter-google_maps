@@ -1,7 +1,10 @@
+import 'package:CWCFlutter/features/Home/Presentation/pages/HomePage.dart';
 import 'package:CWCFlutter/features/signin/presentation/bloc/signin_bloc.dart';
-import 'package:CWCFlutter/features/signin/presentation/widgets/Profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../bloc/signin_bloc.dart';
+import 'SignUp.dart';
 
 class LoginPage extends StatefulWidget {
   static String tag = 'login-page';
@@ -14,54 +17,24 @@ class _LoginPageState extends State<LoginPage> {
   String vPassword;
   @override
   Widget build(BuildContext context) {
-    final logo = Hero(
-      tag: 'hero',
-      child: CircleAvatar(
-        backgroundColor: Colors.transparent,
-        radius: 48.0,
-        child: Image.asset('assets/logo.png'),
-      ),
-    );
-
-    final email = TextFormField(
-      keyboardType: TextInputType.emailAddress,
-      autofocus: false,
-      onChanged: (value) {
-        vEmail = value;
+    final loginButton = MaterialButton(
+      onPressed: () {
+        dispatcheventlogin();
       },
-      decoration: InputDecoration(
-        hintText: 'Email',
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-      ),
-    );
-
-    final password = TextFormField(
-      autofocus: false,
-      obscureText: true,
-      onChanged: (value) {
-        vPassword = value;
-      },
-      decoration: InputDecoration(
-        hintText: 'Password',
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-      ),
-    );
-
-    final loginButton = Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.0),
-      child: RaisedButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
+      child: Text(
+        'SIGN IN',
+        style: TextStyle(
+          fontSize: 15,
+          fontFamily: 'SFUIDisplay',
+          fontWeight: FontWeight.bold,
         ),
-        onPressed: () {
-          dispatcheventlogin();
-        },
-        padding: EdgeInsets.all(12),
-        color: Colors.lightBlueAccent,
-        child: Text('Log In', style: TextStyle(color: Colors.white)),
       ),
+      color: Colors.lightBlue,
+      elevation: 0,
+      minWidth: 400,
+      height: 50,
+      textColor: Colors.white,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     );
 
     final forgotLabel = FlatButton(
@@ -71,10 +44,49 @@ class _LoginPageState extends State<LoginPage> {
       ),
       onPressed: () {},
     );
+    final signup = FlatButton(
+      child: Text(
+        "Don't have an account ?",
+        style: TextStyle(color: Colors.black54),
+      ),
+      onPressed: () {
+        dispqtcheventGoToSignUp();
+      },
+    );
 
+    final pass = Container(
+      child: TextFormField(
+        onChanged: (value) {
+          vPassword = value;
+        },
+        obscureText: true,
+        style: TextStyle(color: Colors.black, fontFamily: 'SFUIDisplay'),
+        decoration: InputDecoration(
+            border: OutlineInputBorder(),
+            labelText: 'Password',
+            prefixIcon: Icon(Icons.lock_outline),
+            labelStyle: TextStyle(fontSize: 15)),
+      ),
+    );
+    final email = Container(
+      child: TextFormField(
+        onChanged: (value) {
+          vEmail = value;
+        },
+        style: TextStyle(color: Colors.black, fontFamily: 'SFUIDisplay'),
+        decoration: InputDecoration(
+            border: OutlineInputBorder(),
+            labelText: 'Password',
+            prefixIcon: Icon(Icons.lock_outline),
+            labelStyle: TextStyle(fontSize: 15)),
+      ),
+    );
     return BlocBuilder<SigninBloc, SigninState>(builder: (context, state) {
       if (state is SignUpLoaded) {
-        return ProfilePage(user: state.user);
+        return HomePage(user: state.user);
+      }
+      if (state is SignUpEmptyDisplay) {
+        return SignUP();
       }
       return Scaffold(
         backgroundColor: Colors.white,
@@ -86,10 +98,11 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(height: 48.0),
               email,
               SizedBox(height: 8.0),
-              password,
+              pass,
               SizedBox(height: 8.0),
               loginButton,
-              forgotLabel
+              signup,
+              forgotLabel,
             ],
           ),
         ),
@@ -100,5 +113,9 @@ class _LoginPageState extends State<LoginPage> {
   void dispatcheventlogin() {
     BlocProvider.of<SigninBloc>(context)
         .dispatch(LoginEvent(email: vEmail, password: vPassword));
+  }
+
+  void dispqtcheventGoToSignUp() {
+    BlocProvider.of<SigninBloc>(context).dispatch(ToSignUpEvent());
   }
 }

@@ -17,7 +17,6 @@ class SigninBloc extends Bloc<SigninEvent, SigninState> {
 
   SigninBloc({@required this.login, @required this.signUp});
   @override
-  // TODO: implement initialState
   SigninState get initialState => SigninInitial();
 
   @override
@@ -35,6 +34,12 @@ class SigninBloc extends Bloc<SigninEvent, SigninState> {
         print(json.encode(result));
         yield SignUpLoaded(user: result);
       });
+    }
+    if (event is ToSignUpEvent) {
+      yield SignUpEmptyDisplay();
+    }
+    if (event is BackEvent) {
+      yield SigninInitial();
     }
     if (event is LoginEvent) {
       // yield SignUpLoading();

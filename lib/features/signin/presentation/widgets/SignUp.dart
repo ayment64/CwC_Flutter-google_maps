@@ -1,8 +1,9 @@
-import 'package:CWCFlutter/core/Params.dart';
 import 'package:CWCFlutter/features/signin/domain/entity/user.dart';
 import 'package:CWCFlutter/features/signin/presentation/bloc/signin_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../bloc/signin_bloc.dart';
 
 class SignUP extends StatefulWidget {
   static String tag = 'login-page';
@@ -27,10 +28,10 @@ class _SignUPState extends State<SignUP> {
         vEmail = value;
       },
       decoration: InputDecoration(
-        hintText: 'Email',
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-      ),
+          border: OutlineInputBorder(),
+          labelText: 'Email',
+          prefixIcon: Icon(Icons.lock_outline),
+          labelStyle: TextStyle(fontSize: 15)),
     );
 
     final password = TextFormField(
@@ -39,11 +40,12 @@ class _SignUPState extends State<SignUP> {
       onChanged: (value) {
         vPassword = value;
       },
+      style: TextStyle(color: Colors.black, fontFamily: 'SFUIDisplay'),
       decoration: InputDecoration(
-        hintText: 'Password',
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-      ),
+          border: OutlineInputBorder(),
+          labelText: 'Password',
+          prefixIcon: Icon(Icons.lock_outline),
+          labelStyle: TextStyle(fontSize: 15)),
     );
     final confirmPassword = TextFormField(
       autofocus: false,
@@ -52,10 +54,10 @@ class _SignUPState extends State<SignUP> {
         vConfirmPassword = value;
       },
       decoration: InputDecoration(
-        hintText: 'Confirm Password',
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-      ),
+          border: OutlineInputBorder(),
+          labelText: 'Confirm Password',
+          prefixIcon: Icon(Icons.lock_outline),
+          labelStyle: TextStyle(fontSize: 15)),
     );
     final username = TextFormField(
       autofocus: false,
@@ -64,10 +66,10 @@ class _SignUPState extends State<SignUP> {
         vUsername = value;
       },
       decoration: InputDecoration(
-        hintText: 'Username',
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-      ),
+          border: OutlineInputBorder(),
+          labelText: 'Username',
+          prefixIcon: Icon(Icons.lock_outline),
+          labelStyle: TextStyle(fontSize: 15)),
     );
     final firstname = TextFormField(
       autofocus: false,
@@ -76,10 +78,10 @@ class _SignUPState extends State<SignUP> {
         vFirstname = value;
       },
       decoration: InputDecoration(
-        hintText: 'Firstname',
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-      ),
+          border: OutlineInputBorder(),
+          labelText: 'Firstname',
+          prefixIcon: Icon(Icons.lock_outline),
+          labelStyle: TextStyle(fontSize: 15)),
     );
     final lastname = TextFormField(
       autofocus: false,
@@ -88,10 +90,10 @@ class _SignUPState extends State<SignUP> {
         vLastname = value;
       },
       decoration: InputDecoration(
-        hintText: 'Lastname',
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-      ),
+          border: OutlineInputBorder(),
+          labelText: 'Lastname',
+          prefixIcon: Icon(Icons.lock_outline),
+          labelStyle: TextStyle(fontSize: 15)),
     );
     final cin = TextFormField(
       autofocus: false,
@@ -100,34 +102,32 @@ class _SignUPState extends State<SignUP> {
         vCin = value;
       },
       decoration: InputDecoration(
-        hintText: 'Cin',
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-      ),
+          border: OutlineInputBorder(),
+          labelText: 'Cin',
+          prefixIcon: Icon(Icons.lock_outline),
+          labelStyle: TextStyle(fontSize: 15)),
     );
 
-    final loginButton = Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.0),
-      child: RaisedButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
-        ),
-        onPressed: () {
-          dispatcheventCreateUser();
-        },
-        padding: EdgeInsets.all(12),
-        color: Colors.lightBlueAccent,
-        child: Text('Log In', style: TextStyle(color: Colors.white)),
-      ),
-    );
-
-    final forgotLabel = FlatButton(
+    final loginButton = MaterialButton(
+      onPressed: () {
+        dispatcheventCreateUser();
+      },
       child: Text(
-        'Forgot password?',
-        style: TextStyle(color: Colors.black54),
+        'SIGN IN',
+        style: TextStyle(
+          fontSize: 15,
+          fontFamily: 'SFUIDisplay',
+          fontWeight: FontWeight.bold,
+        ),
       ),
-      onPressed: () {},
+      color: Colors.lightBlue,
+      elevation: 0,
+      minWidth: 400,
+      height: 50,
+      textColor: Colors.white,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     );
+
     return BlocBuilder<SigninBloc, SigninState>(builder: (context, state) {
       return Scaffold(
         backgroundColor: Colors.white,
@@ -136,6 +136,29 @@ class _SignUPState extends State<SignUP> {
             shrinkWrap: true,
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             children: <Widget>[
+              InkWell(
+                onTap: () {
+                  dispatchBackEvent();
+                },
+                child: new Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    new Icon(
+                      Icons.arrow_back_ios,
+                      color: Colors.lightBlue,
+                      size: 22.0,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 25.0),
+                      child: new Text('Back',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.0,
+                              color: Colors.lightBlue)),
+                    )
+                  ],
+                ),
+              ),
               SizedBox(height: 48.0),
               email,
               SizedBox(height: 8.0),
@@ -152,7 +175,6 @@ class _SignUPState extends State<SignUP> {
               confirmPassword,
               SizedBox(height: 24.0),
               loginButton,
-              forgotLabel
             ],
           ),
         ),
@@ -173,5 +195,9 @@ class _SignUPState extends State<SignUP> {
             lastLogin: DateTime.now(),
             imageurl:
                 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50')));
+  }
+
+  void dispatchBackEvent() {
+    BlocProvider.of<SigninBloc>(context).dispatch(BackEvent());
   }
 }

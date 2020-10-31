@@ -33,7 +33,6 @@ class UserRemoteDataSpourceImpl implements UserRemoteDataSource {
             json.encode({"email": params.email, "password": params.password}));
     print(json.encode({"email": params.email, "password": params.password}));
     if (response.statusCode == 200) {
-      print("nikomek il 9a7ba");
       return User.fromJsonLogin(json.decode(response.body));
     } else {
       print(response.body);

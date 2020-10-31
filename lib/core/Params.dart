@@ -1,4 +1,3 @@
-import 'package:CWCFlutter/core/Failure.dart';
 import 'package:CWCFlutter/features/signin/domain/entity/user.dart';
 import 'package:meta/meta.dart';
 

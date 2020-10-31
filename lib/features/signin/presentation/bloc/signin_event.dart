@@ -19,3 +19,7 @@ class LoginEvent extends SigninEvent {
 
   LoginEvent({@required this.email, @required this.password});
 }
+
+class ToSignUpEvent extends SigninEvent {}
+
+class BackEvent extends SigninEvent {}

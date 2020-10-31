@@ -16,3 +16,5 @@ class SignUpLoaded extends SigninState {
 
   SignUpLoaded({@required this.user});
 }
+
+class SignUpEmptyDisplay extends SigninState {}

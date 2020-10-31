@@ -3,6 +3,8 @@ import 'package:CWCFlutter/features/signin/domain/entity/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../../../../core/Routing.dart';
+
 class ProfilePage extends StatefulWidget {
   final User user;
 
@@ -46,7 +48,7 @@ class MapScreenState extends State<ProfilePage>
     return new Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Navigator.push(context, new ToHome(widget.user));
+            Navigator.of(context).push(ToMaps(user));
           },
           child: Icon(
             Icons.map,
@@ -67,7 +69,11 @@ class MapScreenState extends State<ProfilePage>
                         Padding(
                             padding: EdgeInsets.only(left: 20.0, top: 20.0),
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                print("object");
+                                Navigator.push(
+                                    context, new ToHome(widget.user));
+                              },
                               child: new Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
