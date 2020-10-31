@@ -122,7 +122,7 @@ class MapScreenState extends State<ProfilePage>
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
                                     new CircleAvatar(
-                                      backgroundColor: Colors.lightBlueAccent,
+                                      backgroundColor: Color(0xffFFA91E),
                                       radius: 25.0,
                                       child: new Icon(
                                         Icons.camera_alt,
@@ -329,7 +329,7 @@ class MapScreenState extends State<ProfilePage>
                   child: new RaisedButton(
                 child: new Text("Save"),
                 textColor: Colors.white,
-                color: Colors.lightBlueAccent,
+                color: Color(0xFFFCBD60),
                 onPressed: () {
                   setState(() {
                     _status = true;
@@ -349,7 +349,7 @@ class MapScreenState extends State<ProfilePage>
                   child: new RaisedButton(
                 child: new Text("Cancel"),
                 textColor: Colors.white,
-                color: Colors.blueAccent,
+                color: Color(0xffFFA91E),
                 onPressed: () {
                   setState(() {
                     _status = true;
@@ -370,7 +370,7 @@ class MapScreenState extends State<ProfilePage>
   Widget _getEditIcon() {
     return new GestureDetector(
       child: new CircleAvatar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Color(0xffFFA91E),
         radius: 14.0,
         child: new Icon(
           Icons.edit,

@@ -1,6 +1,7 @@
 import 'package:CWCFlutter/features/Home/Presentation/pages/HomePage.dart';
 import 'package:CWCFlutter/features/signin/presentation/bloc/signin_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/signin_bloc.dart';
@@ -15,6 +16,9 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String vEmail;
   String vPassword;
+  bool mailErrorVisibility = false;
+  bool passwordErrorVisibility = false;
+
   @override
   Widget build(BuildContext context) {
     final loginButton = MaterialButton(
@@ -29,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
           fontWeight: FontWeight.bold,
         ),
       ),
-      color: Colors.lightBlue,
+      color: Color(0xffFFA91E),
       elevation: 0,
       minWidth: 400,
       height: 50,
@@ -58,6 +62,9 @@ class _LoginPageState extends State<LoginPage> {
       child: TextFormField(
         onChanged: (value) {
           vPassword = value;
+          setState(() {
+            passwordErrorVisibility = vPassword.length < 6;
+          });
         },
         obscureText: true,
         style: TextStyle(color: Colors.black, fontFamily: 'SFUIDisplay'),
@@ -72,12 +79,18 @@ class _LoginPageState extends State<LoginPage> {
       child: TextFormField(
         onChanged: (value) {
           vEmail = value;
+          setState(() {
+            mailErrorVisibility = !RegExp(
+                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                .hasMatch(vEmail);
+          });
         },
+        keyboardType: TextInputType.emailAddress,
         style: TextStyle(color: Colors.black, fontFamily: 'SFUIDisplay'),
         decoration: InputDecoration(
             border: OutlineInputBorder(),
-            labelText: 'Password',
-            prefixIcon: Icon(Icons.lock_outline),
+            labelText: 'Email',
+            prefixIcon: Icon(Icons.email_outlined),
             labelStyle: TextStyle(fontSize: 15)),
       ),
     );
@@ -95,10 +108,32 @@ class _LoginPageState extends State<LoginPage> {
             shrinkWrap: true,
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             children: <Widget>[
+              Image(
+                image: AssetImage('assets/images/jmal.gif'),
+              ),
               SizedBox(height: 48.0),
               email,
+              Padding(
+                padding: const EdgeInsets.fromLTRB(30, 2, 0, 0),
+                child: Visibility(
+                    visible: mailErrorVisibility,
+                    child: Text(
+                      "put a valid email",
+                      style: TextStyle(color: Colors.red),
+                    )),
+              ),
               SizedBox(height: 8.0),
               pass,
+              Visibility(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(30, 2, 0, 0),
+                  child: Text(
+                    "Invalid Password",
+                    style: TextStyle(color: Colors.red),
+                  ),
+                ),
+                visible: passwordErrorVisibility,
+              ),
               SizedBox(height: 8.0),
               loginButton,
               signup,
