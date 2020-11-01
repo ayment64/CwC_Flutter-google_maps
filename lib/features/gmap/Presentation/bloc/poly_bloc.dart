@@ -50,7 +50,7 @@ class PolyBloc extends Bloc<PolyEvent, PolyState> {
       yield* result.fold((failure) async* {
         print("dfldskflsdkf");
         yield PloyFailed();
-      }, (result) async* {
+      }, (result) async* { 
         print("deleted successfully");
         yield PolyInitial();
       });

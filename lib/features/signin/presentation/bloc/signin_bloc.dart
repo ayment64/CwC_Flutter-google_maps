@@ -24,7 +24,7 @@ class SigninBloc extends Bloc<SigninEvent, SigninState> {
     SigninEvent event,
   ) async* {
     if (event is CreateUserEvent) {
-      // yield SignUpLoading();
+      yield SignUpLoading();
 
       UserParams params = UserParams(user: event.user);
       var result = await signUp(params);
@@ -42,7 +42,7 @@ class SigninBloc extends Bloc<SigninEvent, SigninState> {
       yield SigninInitial();
     }
     if (event is LoginEvent) {
-      // yield SignUpLoading();
+      yield SignUpLoading();
       LoginParams params =
           LoginParams(email: event.email, password: event.password);
       var result = await login(params);

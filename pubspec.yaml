@@ -52,6 +52,7 @@ flutter:
   assets:
    - assets/images/
    - assets/images/jmal.gif
+   - assets/images/savemaps.png
    - assets/images/category.png
    - assets/images/user_icon.png
    - assets/images/avatar.png
