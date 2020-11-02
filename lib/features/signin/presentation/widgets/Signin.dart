@@ -1,3 +1,4 @@
+import 'package:CWCFlutter/core/widgets/LoadingPage.dart';
 import 'package:CWCFlutter/features/Home/Presentation/pages/HomePage.dart';
 import 'package:CWCFlutter/features/signin/presentation/bloc/signin_bloc.dart';
 import 'package:flutter/material.dart';
@@ -101,6 +102,7 @@ class _LoginPageState extends State<LoginPage> {
       if (state is SignUpEmptyDisplay) {
         return SignUP();
       }
+      if (state is SignUpLoading) return LoadingPage();
       return Scaffold(
         backgroundColor: Colors.white,
         body: Center(

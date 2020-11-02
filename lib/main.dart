@@ -25,7 +25,8 @@ class MyApp extends StatelessWidget {
     };
     MaterialColor orange = MaterialColor(0xFF93cd48, colorCodes);
     return MaterialApp(
-      title: 'Coding with Curry',
+      debugShowCheckedModeBanner: false,
+      title: 'Camels',
       theme: ThemeData(
         primaryColor: Color(0xffFFA91E),
         primaryIconTheme: IconThemeData(color: Colors.white),
