@@ -65,7 +65,9 @@ class _MyDataState extends State<MyData> with SingleTickerProviderStateMixin {
   }
 
   Widget buildBody(BuildContext ctx, dynamic item) {
-    return Card(child: Text(item.toString()));
+    return Card(
+      child: Text(item.toString())
+    );
   }
 
   void dispatchGetAllDataEvent() {

@@ -232,7 +232,7 @@ class _GMapState extends State<GMap> {
                                 child: Container(
                                   height: (MediaQuery.of(context).size.height *
                                           0.6) +
-                                      118,
+                                      118+45,
                                   child: new Column(
                                     children: <Widget>[
                                       Padding(
