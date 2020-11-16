@@ -1,4 +1,5 @@
 import 'package:CWCFlutter/features/Home/Presentation/bloc/home_bloc.dart';
+import 'package:CWCFlutter/features/MyData/Presentation/bloc/mydata_bloc.dart';
 import 'package:CWCFlutter/features/gmap/Data/Datasource/Implementation/Poly_remote_data_source_impl.dart';
 import 'package:CWCFlutter/features/gmap/Data/Datasource/Poly_remote_data_source.dart';
 import 'package:CWCFlutter/features/gmap/Domain/Repository/Poly_repository.dart';
@@ -48,6 +49,12 @@ void init() {
       () => PolyRepositoryImpl(remoteDataSource: sl()));
   sl.registerLazySingleton<PolyRemoteDataSource>(
       () => PolyRemoteDataSourceImpl(client: sl()));
+
+  // ? ------------------------------ MyData --------------------------------
+  // * --------------------------------        bloc       --------------------------------
+
+  sl.registerFactory(
+      () => MydataBloc(getPoly: sl(), deletePoly: sl()));
   // ! --------------------------------      Externals    ---------------------------------
   sl.registerLazySingleton(() => http.Client());
 }

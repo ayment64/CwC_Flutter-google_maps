@@ -1,3 +1,4 @@
+import 'package:CWCFlutter/features/MyData/Presentation/Pages/MyDataPage.dart';
 import 'package:CWCFlutter/features/gmap/Presentation/Pages/Poly_page.dart';
 import 'package:CWCFlutter/features/signin/domain/entity/user.dart';
 import 'package:CWCFlutter/features/signin/presentation/Pages/Signin_Page.dart';
@@ -106,10 +107,18 @@ class _HomeState extends State<Home> {
                   user: widget.user,
                 )),
           ),
+           new Offstage(
+            offstage: selectedIndex != 1,
+            child: new TickerMode(
+                enabled: selectedIndex == 1,
+                child: MyDataPage(
+                  user: widget.user,
+                )),
+          ),
           new Offstage(
             offstage: selectedIndex != 3,
             child: new TickerMode(
-                enabled: selectedIndex == 0,
+                enabled: selectedIndex == 3,
                 child: SignInPage(
                   user: widget.user,
                   toProfile: true,

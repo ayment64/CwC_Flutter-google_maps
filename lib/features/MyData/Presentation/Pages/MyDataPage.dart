@@ -1,5 +1,7 @@
 import 'package:CWCFlutter/features/Home/Presentation/bloc/home_bloc.dart';
 import 'package:CWCFlutter/features/Home/Presentation/widgets/Home.dart';
+import 'package:CWCFlutter/features/MyData/Presentation/Widgets/MyDataWidget.dart';
+import 'package:CWCFlutter/features/MyData/Presentation/bloc/mydata_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,8 +24,8 @@ class _MyDataPageState extends State<MyDataPage> {
     return Scaffold(
         backgroundColor: Colors.white,
         body: BlocProvider(
-          builder: (_) => sl<HomeBloc>(),
-          child: Home(
+          builder: (_) => sl<MydataBloc>(),
+          child: MyData(
             user: user,
           ),
         ));
