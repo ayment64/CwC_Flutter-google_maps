@@ -5,9 +5,7 @@ abstract class MydataEvent extends Equatable {
 
   @override
   List<Object> get props => [];
-
 }
-
 
 class GetAllDataEvent extends MydataEvent {
   final String userID;
@@ -16,15 +14,7 @@ class GetAllDataEvent extends MydataEvent {
 }
 
 class DeletePolyEvent extends MydataEvent {
-  final Poly poly;
+  final String id;
 
-  DeletePolyEvent({this.poly});
-
-  
-
-
+  DeletePolyEvent({this.id});
 }
-
-
-
-

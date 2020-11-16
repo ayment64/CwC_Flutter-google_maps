@@ -4,6 +4,7 @@ import 'package:CWCFlutter/features/gmap/Domain/Entity/Poly.dart';
 import 'package:CWCFlutter/features/signin/domain/entity/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class MyData extends StatefulWidget {
   final User user;
@@ -49,23 +50,172 @@ class _MyDataState extends State<MyData> with SingleTickerProviderStateMixin {
             itemBuilder: (BuildContext ctxt, int index) =>
                 buildBody(ctxt, state.listpoly[index]));
       }
-      if (state is PolyDeleting)
-      {
+      if (state is PolyDeleting) {
         return LoadingPage();
       }
       // if (state is PolyDeletedSuccessfully)
       // {
       //   dispatchDeletePolyEvent();
-        
-        
+
       // }
       return Container();
-      
     });
   }
 
   Widget buildBody(BuildContext ctx, dynamic item) {
-    return Card(child: Text(item.toString()));
+    bool visibe = false;
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Slidable(
+        actionPane: SlidableDrawerActionPane(),
+        child: InkWell(
+          onTap: () {
+            setState(() {
+              print("lalalallalalallalalalallalalla");
+              visibe = !visibe;
+            });
+          },
+          child: Card(
+              elevation: 8.0,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Stack(
+                  children: [
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Color(item.color),
+                            shape: BoxShape.rectangle,
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(8),
+                                bottomLeft: Radius.circular(8))),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            item.type,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Column(
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              "#" + item.sId,
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 32),
+                          child: Row(
+                            children: [
+                              Text(
+                                "Owner Name : ",
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                item.ownerName,
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Row(
+                            children: [
+                              Text(
+                                "Owner Last Name : ",
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                item.ownerLastName,
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Row(
+                            children: [
+                              Text(
+                                "Owner Phone Number : ",
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                item.ownerPhoneNumber,
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Visibility(
+                          visible: visibe,
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "Owner Adress : ",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      item.ownerAdress,
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "Area of terrain : ",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      "${item.areaOfTerrain} ${item.areaOfTerrainUnit}",
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              )),
+        ),
+        actions: <Widget>[
+          IconSlideAction(
+            caption: 'Delete',
+            color: Colors.red,
+            icon: Icons.delete,
+            onTap: () {
+              dispatchDeletePolyEvent(item.sId);
+            },
+          ),
+        ],
+      ),
+    ); //item.areaOfTerrain
   }
 
   void dispatchGetAllDataEvent() {
@@ -74,8 +224,7 @@ class _MyDataState extends State<MyData> with SingleTickerProviderStateMixin {
   }
 
   // test
-  void dispatchDeletePolyEvent() {
-    BlocProvider.of<MydataBloc>(context)
-        .dispatch(DeletePolyEvent(poly: widget.poly));
+  void dispatchDeletePolyEvent(String id) {
+    BlocProvider.of<MydataBloc>(context).dispatch(DeletePolyEvent(id: id));
   }
 }

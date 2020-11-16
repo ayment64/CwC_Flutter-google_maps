@@ -32,14 +32,14 @@ class MydataBloc extends Bloc<MydataEvent, MydataState> {
         print("MyDataLoadedSuccessfully");
       });
     }
-    // if (event is DeletePolyEvent) {
-    //   yield MyDataLoading();
-    //   var response = await deletePoly(event.poly.sId);
-    //   yield* response.fold((failure) async* {
-    //     yield PolyFailedToDelete();
-    //   }, (result) async* {
-    //     yield PolyDeletedSuccessfully();
-    //   });
-    // }
+    if (event is DeletePolyEvent) {
+      yield MyDataLoading();
+      var response = await deletePoly(event.id);
+      yield* response.fold((failure) async* {
+        yield PolyFailedToDelete();
+      }, (result) async* {
+        yield MydataInitial();
+      });
+    }
   }
 }
