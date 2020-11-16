@@ -404,12 +404,15 @@ class _GMapState extends State<GMap> {
                     initiated = false;
                   });
                 },
-                child: Container(
-                  color: Color(0X00000000),
-                  child: Image(
-                    height: 90,
-                    width: 90,
-                    image: AssetImage('assets/images/save.png'),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    color: Color(0X00000000),
+                    child: Image(
+                      height: 60,
+                      width: 60,
+                      image: AssetImage('assets/images/save.png'),
+                    ),
                   ),
                 ),
               ),
