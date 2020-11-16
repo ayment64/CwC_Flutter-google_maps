@@ -60,6 +60,7 @@ flutter:
    - assets/images/as.png
    - assets/images/profile.png
    - assets/images/logoutpng.png
+   - assets/images/color_picker.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

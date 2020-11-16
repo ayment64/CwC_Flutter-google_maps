@@ -61,11 +61,6 @@ class _GMapState extends State<GMap> {
           consumeTapEvents: true,
           onTap: () {
             print("poly tap");
-            setState(() {
-              selectedPolygon = PolygonId("$randomNumber");
-
-              isSelected = !isSelected;
-            });
           },
         ),
       );
@@ -203,215 +198,239 @@ class _GMapState extends State<GMap> {
             ),
             Align(
               alignment: Alignment.bottomLeft,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: FloatingActionButton(
-                  heroTag: "backtohome",
-                  child: Icon(
-                    Icons.arrow_back,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
-                    dispatchreinitiateEvent();
-                    setState(() {
-                      initiated = false;
-                    });
-                    Navigator.of(context).push(ToHome(widget.user));
-                  },
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
               child: InkWell(
                 onTap: () {
                   showDialog(
-                          child: StatefulBuilder(builder: (context, snapshot) {
-                            return new Dialog(
-                              child: SingleChildScrollView(
-                                child: Container(
-                                  height: (MediaQuery.of(context).size.height *
-                                          0.6) +
-                                      118,
-                                  child: new Column(
-                                    children: <Widget>[
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: TextFormField(
-                                          onChanged: (value) {
-                                            setState(() {
-                                              ownername = value;
-                                            });
-                                          },
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontFamily: 'SFUIDisplay'),
-                                          decoration: InputDecoration(
-                                              border: OutlineInputBorder(),
-                                              labelText: 'Owner Name',
-                                              prefixIcon:
-                                                  Icon(Icons.lock_outline),
-                                              labelStyle:
-                                                  TextStyle(fontSize: 15)),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: TextFormField(
-                                          onChanged: (value) {
-                                            setState(() {
-                                              ownerlastname = value;
-                                            });
-                                          },
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontFamily: 'SFUIDisplay'),
-                                          decoration: InputDecoration(
-                                              border: OutlineInputBorder(),
-                                              labelText: 'Owner Last Name',
-                                              prefixIcon:
-                                                  Icon(Icons.lock_outline),
-                                              labelStyle:
-                                                  TextStyle(fontSize: 15)),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: TextFormField(
-                                          onChanged: (value) {
-                                            setState(() {
-                                              ownerphonenumber = value;
-                                            });
-                                          },
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontFamily: 'SFUIDisplay'),
-                                          decoration: InputDecoration(
-                                              border: OutlineInputBorder(),
-                                              labelText: 'Owner Phone Number',
-                                              prefixIcon:
-                                                  Icon(Icons.lock_outline),
-                                              labelStyle:
-                                                  TextStyle(fontSize: 15)),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: TextFormField(
-                                          onChanged: (value) {
-                                            setState(() {
-                                              owneradress = value;
-                                            });
-                                          },
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontFamily: 'SFUIDisplay'),
-                                          decoration: InputDecoration(
-                                              border: OutlineInputBorder(),
-                                              labelText: 'Owner Adress',
-                                              prefixIcon:
-                                                  Icon(Icons.lock_outline),
-                                              labelStyle:
-                                                  TextStyle(fontSize: 15)),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: TextFormField(
-                                          keyboardType: TextInputType.number,
-                                          onChanged: (value) {
-                                            setState(() {
-                                              area = int.parse(value);
-                                            });
-                                          },
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontFamily: 'SFUIDisplay'),
-                                          decoration: InputDecoration(
-                                              border: OutlineInputBorder(),
-                                              labelText: 'Area Of terrain',
-                                              prefixIcon:
-                                                  Icon(Icons.lock_outline),
-                                              labelStyle:
-                                                  TextStyle(fontSize: 15)),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: TextFormField(
-                                          onChanged: (value) {
-                                            setState(() {
-                                              unit = value;
-                                            });
-                                          },
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontFamily: 'SFUIDisplay'),
-                                          decoration: InputDecoration(
-                                              border: OutlineInputBorder(),
-                                              labelText: 'Unit',
-                                              prefixIcon:
-                                                  Icon(Icons.lock_outline),
-                                              labelStyle:
-                                                  TextStyle(fontSize: 15)),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: TextFormField(
-                                          onChanged: (value) {
-                                            setState(() {
-                                              type = value;
-                                            });
-                                          },
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontFamily: 'SFUIDisplay'),
-                                          decoration: InputDecoration(
-                                              border: OutlineInputBorder(),
-                                              labelText: 'Type',
-                                              prefixIcon:
-                                                  Icon(Icons.lock_outline),
-                                              labelStyle:
-                                                  TextStyle(fontSize: 15)),
-                                        ),
-                                      ),
-                                      new FlatButton(
-                                        color: Colors.lightBlue,
-                                        child: new Text(
-                                          "Save",
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            );
-                          }),
-                          context: context)
-                      .then((value) {
-                    dispatchAddPolyEvent();
-                    setState(() {
-                      points = List();
-                      _circles = HashSet<Circle>();
-                      _polylines = HashSet<Polyline>();
-                    });
-
-                    initiated = false;
-                  });
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        titlePadding: const EdgeInsets.all(0.0),
+                        contentPadding: const EdgeInsets.all(0.0),
+                        content: SingleChildScrollView(
+                          child: MaterialPicker(
+                            pickerColor: polygonCurrentColor,
+                            onColorChanged: (value) {
+                              setState(() {
+                                polygonCurrentColor = value;
+                              });
+                            },
+                            enableLabel: true,
+                          ),
+                        ),
+                      );
+                    },
+                  );
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                     color: Color(0X00000000),
                     child: Image(
-                      height: 60,
-                      width: 60,
-                      image: AssetImage('assets/images/save.png'),
+                      height: 50,
+                      width: 50,
+                      image: AssetImage('assets/images/color_picker.png'),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Visibility(
+                visible: points.length > 2,
+                child: InkWell(
+                  onTap: () {
+                    showDialog(
+                            child:
+                                StatefulBuilder(builder: (context, snapshot) {
+                              return new Dialog(
+                                child: SingleChildScrollView(
+                                  child: Container(
+                                    height:
+                                        (MediaQuery.of(context).size.height *
+                                                0.6) +
+                                            118,
+                                    child: new Column(
+                                      children: <Widget>[
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: TextFormField(
+                                            onChanged: (value) {
+                                              setState(() {
+                                                ownername = value;
+                                              });
+                                            },
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontFamily: 'SFUIDisplay'),
+                                            decoration: InputDecoration(
+                                                border: OutlineInputBorder(),
+                                                labelText: 'Owner Name',
+                                                prefixIcon:
+                                                    Icon(Icons.lock_outline),
+                                                labelStyle:
+                                                    TextStyle(fontSize: 15)),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: TextFormField(
+                                            onChanged: (value) {
+                                              setState(() {
+                                                ownerlastname = value;
+                                              });
+                                            },
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontFamily: 'SFUIDisplay'),
+                                            decoration: InputDecoration(
+                                                border: OutlineInputBorder(),
+                                                labelText: 'Owner Last Name',
+                                                prefixIcon:
+                                                    Icon(Icons.lock_outline),
+                                                labelStyle:
+                                                    TextStyle(fontSize: 15)),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: TextFormField(
+                                            onChanged: (value) {
+                                              setState(() {
+                                                ownerphonenumber = value;
+                                              });
+                                            },
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontFamily: 'SFUIDisplay'),
+                                            decoration: InputDecoration(
+                                                border: OutlineInputBorder(),
+                                                labelText: 'Owner Phone Number',
+                                                prefixIcon:
+                                                    Icon(Icons.lock_outline),
+                                                labelStyle:
+                                                    TextStyle(fontSize: 15)),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: TextFormField(
+                                            onChanged: (value) {
+                                              setState(() {
+                                                owneradress = value;
+                                              });
+                                            },
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontFamily: 'SFUIDisplay'),
+                                            decoration: InputDecoration(
+                                                border: OutlineInputBorder(),
+                                                labelText: 'Owner Adress',
+                                                prefixIcon:
+                                                    Icon(Icons.lock_outline),
+                                                labelStyle:
+                                                    TextStyle(fontSize: 15)),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: TextFormField(
+                                            keyboardType: TextInputType.number,
+                                            onChanged: (value) {
+                                              setState(() {
+                                                area = int.parse(value);
+                                              });
+                                            },
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontFamily: 'SFUIDisplay'),
+                                            decoration: InputDecoration(
+                                                border: OutlineInputBorder(),
+                                                labelText: 'Area Of terrain',
+                                                prefixIcon:
+                                                    Icon(Icons.lock_outline),
+                                                labelStyle:
+                                                    TextStyle(fontSize: 15)),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: TextFormField(
+                                            onChanged: (value) {
+                                              setState(() {
+                                                unit = value;
+                                              });
+                                            },
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontFamily: 'SFUIDisplay'),
+                                            decoration: InputDecoration(
+                                                border: OutlineInputBorder(),
+                                                labelText: 'Unit',
+                                                prefixIcon:
+                                                    Icon(Icons.lock_outline),
+                                                labelStyle:
+                                                    TextStyle(fontSize: 15)),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: TextFormField(
+                                            onChanged: (value) {
+                                              setState(() {
+                                                type = value;
+                                              });
+                                            },
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontFamily: 'SFUIDisplay'),
+                                            decoration: InputDecoration(
+                                                border: OutlineInputBorder(),
+                                                labelText: 'Type',
+                                                prefixIcon:
+                                                    Icon(Icons.lock_outline),
+                                                labelStyle:
+                                                    TextStyle(fontSize: 15)),
+                                          ),
+                                        ),
+                                        new FlatButton(
+                                          color: Colors.lightBlue,
+                                          child: new Text(
+                                            "Save",
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }),
+                            context: context)
+                        .then((value) {
+                      dispatchAddPolyEvent();
+                      setState(() {
+                        points = List();
+                        _circles = HashSet<Circle>();
+                        _polylines = HashSet<Polyline>();
+                      });
+
+                      initiated = false;
+                    });
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      color: Color(0X00000000),
+                      child: Image(
+                        height: 60,
+                        width: 60,
+                        image: AssetImage('assets/images/save.png'),
+                      ),
                     ),
                   ),
                 ),
