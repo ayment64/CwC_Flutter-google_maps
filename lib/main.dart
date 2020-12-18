@@ -21,14 +21,14 @@ class MyApp extends StatelessWidget {
       600: Color(0xBBFFA91E),
       700: Color(0xCCFFA91E),
       800: Color(0xEEFFA91E),
-      900: Color(0xFFFFA91E),
+      900: Color(0xFFF03A61),
     };
     MaterialColor orange = MaterialColor(0xFF93cd48, colorCodes);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Camels',
       theme: ThemeData(
-        primaryColor: Color(0xffFFA91E),
+        primaryColor: Color(0xFFF03A61),
         primaryIconTheme: IconThemeData(color: Colors.white),
         primarySwatch: orange,
       ),

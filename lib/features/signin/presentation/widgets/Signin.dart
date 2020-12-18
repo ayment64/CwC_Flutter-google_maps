@@ -34,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
           fontWeight: FontWeight.bold,
         ),
       ),
-      color: Color(0xffFFA91E),
+      color: Color(0xFFF03A61),
       elevation: 0,
       minWidth: 400,
       height: 50,
@@ -111,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             children: <Widget>[
               Image(
-                image: AssetImage('assets/images/jmal.gif'),
+                image: AssetImage('assets/images/nari.gif'),
               ),
               SizedBox(height: 48.0),
               email,

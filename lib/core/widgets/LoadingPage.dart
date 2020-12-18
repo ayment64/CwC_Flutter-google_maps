@@ -9,7 +9,7 @@ class LoadingPage extends StatelessWidget {
       color: Colors.white,
       child: Center(
         child: Image(
-          image: AssetImage('assets/images/jmal.gif'),
+          image: AssetImage('assets/images/nari.gif'),
         ),
       ),
     );

@@ -22,7 +22,7 @@ class _HomeState extends State<Home> {
 
   List<NavigationItem> items = [
     NavigationItem(Icon(Icons.maps_ugc), Text('Maps'), Colors.deepPurpleAccent),
-    NavigationItem(Icon(Icons.data_usage), Text('Data'), Colors.pinkAccent),
+    NavigationItem(Icon(Icons.data_usage), Text('Data '), Colors.pinkAccent),
     NavigationItem(Icon(Icons.settings_applications_sharp), Text('settings'),
         Colors.amberAccent),
     NavigationItem(
@@ -107,7 +107,7 @@ class _HomeState extends State<Home> {
                   user: widget.user,
                 )),
           ),
-           new Offstage(
+          new Offstage(
             offstage: selectedIndex != 1,
             child: new TickerMode(
                 enabled: selectedIndex == 1,

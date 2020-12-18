@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:CWCFlutter/core/widgets/LoadingPage.dart';
 import 'package:CWCFlutter/features/MyData/Presentation/bloc/mydata_bloc.dart';
 import 'package:CWCFlutter/features/gmap/Domain/Entity/Poly.dart';
@@ -18,7 +20,7 @@ class MyData extends StatefulWidget {
 
 class _MyDataState extends State<MyData> with SingleTickerProviderStateMixin {
   AnimationController _controller;
-
+  bool inited = true;
   @override
   void initState() {
     super.initState();
@@ -93,7 +95,7 @@ class _MyDataState extends State<MyData> with SingleTickerProviderStateMixin {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            item.type,
+                            item.type ?? "not available ",
                             style: TextStyle(color: Colors.white),
                           ),
                         ),
@@ -135,7 +137,7 @@ class _MyDataState extends State<MyData> with SingleTickerProviderStateMixin {
                                     fontSize: 16, fontWeight: FontWeight.bold),
                               ),
                               Text(
-                                item.ownerLastName,
+                                item.ownerLastName ?? "not available",
                                 style: TextStyle(fontSize: 16),
                               ),
                             ],
@@ -151,7 +153,7 @@ class _MyDataState extends State<MyData> with SingleTickerProviderStateMixin {
                                     fontSize: 16, fontWeight: FontWeight.bold),
                               ),
                               Text(
-                                item.ownerPhoneNumber,
+                                item.ownerPhoneNumber ?? "not availble ",
                                 style: TextStyle(fontSize: 16),
                               ),
                             ],
@@ -172,7 +174,7 @@ class _MyDataState extends State<MyData> with SingleTickerProviderStateMixin {
                                           fontWeight: FontWeight.bold),
                                     ),
                                     Text(
-                                      item.ownerAdress,
+                                      item.ownerAdress ?? "not available ",
                                       style: TextStyle(fontSize: 16),
                                     ),
                                   ],

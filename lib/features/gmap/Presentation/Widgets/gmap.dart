@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:collection';
 import 'dart:math';
 import 'package:CWCFlutter/core/Routing.dart';
@@ -41,6 +42,7 @@ class _GMapState extends State<GMap> {
   String type;
   String unit;
   int area;
+  bool inited = true;
   @override
   void initState() {
     super.initState();

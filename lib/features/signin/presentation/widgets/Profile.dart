@@ -329,7 +329,7 @@ class MapScreenState extends State<ProfilePage>
                   child: new RaisedButton(
                 child: new Text("Save"),
                 textColor: Colors.white,
-                color: Color(0xFFFCBD60),
+                color: Color(0xFFB35211),
                 onPressed: () {
                   setState(() {
                     _status = true;
